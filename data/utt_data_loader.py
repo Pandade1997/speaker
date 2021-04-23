@@ -28,6 +28,7 @@ class DeepSpeakerUttDataset(BaseDataset):
         :param audio_conf: Dictionary containing the sample_rate, num_channel, window_size window_shift
         """
         self.feats_scp = []
+        self.feats_scp = []
         feats_scp_file = os.path.join(data_dir, 'feats.scp')
         with open(feats_scp_file, 'r', encoding='utf-8') as scp_reader:
             for line in scp_reader:
@@ -48,9 +49,8 @@ class DeepSpeakerUttDataset(BaseDataset):
         print('The dataset have {} utts and {} speakers'.format(self.spe_size, self.class_nums))
 
         for n in range(self.spe_size):
-            feat_path = self.feats_scp[n][1]
-            path = "/exdata/HOME/snie/dataset/speaker/AISHELL-2/iOS/train/"
-            raw_in_feat = self.load_feat(path + feat_path)
+            feat_path = '/exdata/HOME/snie/code/v1_speaker_asvspoof/data/' + self.feats_scp[n][1]
+            raw_in_feat = self.load_feat(feat_path)
             raw_delta_in_feat = self.load_feat(feat_path, opt.delta_order)
             in_feat = self.parse_feat(feat_path, opt.delta_order, None, None, opt.left_context_width,
                                       opt.right_context_width)
@@ -59,9 +59,9 @@ class DeepSpeakerUttDataset(BaseDataset):
                 self.feat_size = np.shape(raw_delta_in_feat)[1]
                 self.in_size = np.shape(in_feat)[1]
                 break
-        print('feat_size {}'.format(self.feat_size))
-        if self.feat_size < 0:
-            raise Exception('Wrong feat_size {}'.format(self.feat_size))
+        # print('feat_size {}'.format(self.feat_size))
+        # if self.feat_size < 0:
+        #     raise Exception('Wrong feat_size {}'.format(self.feat_size))
 
         super(DeepSpeakerUttDataset, self).__init__(opt, data_dir)
 

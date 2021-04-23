@@ -9,7 +9,7 @@ def model_load(checkpoint, state_dict, model):
     if state_dict in checkpoint:
         resume_dict = checkpoint[state_dict]
         resume_dict = {k: v for k, v in resume_dict.items() if k in model_dict}
-        print ('resume_dict is {}'.format(resume_dict.keys()))
+        print('resume_dict is {}'.format(resume_dict.keys()))
         model_dict.update(resume_dict)
         model.load_state_dict(model_dict)
     else:
@@ -40,4 +40,3 @@ def model_select(opt, seq_training=False):
         elif 'cnn' in opt.model_type:
             model = DeepSpeakerCNNModel(opt)
     return model
-    

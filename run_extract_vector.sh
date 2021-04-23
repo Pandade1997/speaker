@@ -1,6 +1,6 @@
 #!/bin/bash
 works_dir=$(pwd)
-feats_scp=/data/HOME/bliu/workspace/speaker/data/vox/test/feats.scp_100
+feats_scp=/exdata/HOME/snie/code/v1_speaker_asvspoof/dataset_min/feats.scp
 expdir=exp/xvector/
 stage=1
 nj=4

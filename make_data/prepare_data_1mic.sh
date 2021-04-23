@@ -14,6 +14,7 @@ words_vocab_file=word_seg_vocab.txt
 if [ $stage -le 0 ]; then
   echo "step-1: Prepare wav.scp, text, utt2spk, spk2utt, utt2data and data2utt from a dataset_lst"
   python selectASRData.py $datalst $words_vocab_file $datadir/speech/all || exit 1;
+
 fi
 
 # Prepare train, dev and test for speech
